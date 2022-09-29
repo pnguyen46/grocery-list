@@ -14,7 +14,7 @@ module.exports = {
         try{
             const todoItems = await Todo.find({userId:req.user.id})
             const itemsLeft = await Todo.countDocuments({userId:req.user.id,completed: false})
-            const category = await Category.find({userId:req.user._id}).sort({_id:-1});
+            const category = await Category.find({userId:req.user._id,display:true}).sort({_id:-1});
             const defaultOptions = ['PRODUCE','DAIRY','DELI','FROZEN','OTHER'];
             const newCategory = category.filter(item => !defaultOptions.includes(item.category));
             res.render('todos.ejs', {title:'Homepage',todos: todoItems, left: itemsLeft, user: req.user,category,newCategory});

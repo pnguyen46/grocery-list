@@ -27,61 +27,70 @@
           </div>
         </div>
       </nav>
-
     <h1><%= user.userName %>'s grocery list</h1>
+    
     <section class="container">
-        <ul>
-            <%category.forEach(item => {%>
-                <%if(item.display){%>
-                    <li class="categoryName"><h2><%=item.category%></h2></li>
-                <%}%>
-                <% todos.forEach( el => { %>
-                    <%if(el.category === item.category){%>
-                        <li class='todoItem' data-id='<%=el._id%>'>
-                            <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
-                            <span><%= el.quantity%></span>
-                            <button class='edit btn btn-primary btn-sm'> <a href="todos/edit/<%=el._id%>">Edit</a> </button>
-                            <button class='del btn btn-primary btn-sm'> Delete </button>
-                        </li>
-                    <%}%>
-                <%})%>  
-            <%})%>
-    
-        </ul>
-    
-        <h2><%= user.userName %> has <%= left %> item(s) to pick up.</h2>
+        <div class="row">
+            <div class="col d-flex justify-content-center">
+                <ul class="d-flex gap-5 flex-wrap justify-content-center">
+                    <%category.forEach((item,indx) => {%>
+                            <%if(item.display){%>
+                                <div class="col-4">
+                                    <li class="categoryName"><h2><%=item.category%></h2></li>
+                                    <% todos.forEach( el => { %>
+                                        <%if(el.category === item.category){%>
+                                            <li class='todoItem' data-id='<%=el._id%>'>
+                                                <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                                                <span><%= el.quantity%></span>
+                                                <button class='edit btn btn-primary btn-sm'> <a href="todos/edit/<%=el._id%>">Edit</a> </button>
+                                                <button class='del btn btn-primary btn-sm'> Delete </button>
+                                            </li>
+                                        <%}%>
+                                    <%})%>  
+                                </div>
+                            <%}%> 
+                    <%})%>
+                </ul>
+            </div>
+        </div>
+        
     </section>
     <section class="container">
-        <form action="/todos/createTodo" method='POST' id="subForm" class="container mb-3">
-            <div class="categoryForm">
-                <button type="button" class="btn btn-primary"><a href="todos/category">Add/Delete Category</a></button>
-                <select class="form-select form-select-sm" name="category" id="categoryForm" required>
-                    <option value="">Select Category</option>
-                    <%newCategory.forEach(el=>{%>
-                        <option value="<%=el.category%>"><%=el.category%></option>
-                    <%})%>
-                    <option value="PRODUCE">PRODUCE</option>
-                    <option value="DAIRY">DAIRY</option>
-                    <option value="DELI">DELI</option>
-                    <option value="FROZEN">FROZEN</option>
-                    <option value="OTHER">OTHER</option>
-                </select>
+        <div class="row">
+            <div class="col">
+            <h2><%= user.userName %> has <%= left %> item(s) to pick up.</h2>
+                <form action="/todos/createTodo" method='POST' id="subForm" class="container mb-3">
+                    <div class="groceryForm gap-2 justify-content-center">
+                        <input type="text" placeholder="Enter Grocery Item" name='todoItem' required>
+                        <input type="number" placeholder="quantity(optional)" name='quantity' min="0">
+                        <select class="form-select form-select-sm" name="category" id="categoryForm" required>
+                            <option value="">Select Category</option>
+                            <%newCategory.forEach(el=>{%>
+                                <option value="<%=el.category%>"><%=el.category%></option>
+                            <%})%>
+                            <option value="PRODUCE">PRODUCE</option>
+                            <option value="DAIRY">DAIRY</option>
+                            <option value="DELI">DELI</option>
+                            <option value="FROZEN">FROZEN</option>
+                            <option value="OTHER">OTHER</option>
+                        </select>
+                        <button class="btn btn-primary" type="submit">Add</button>
+                        <button class="btn btn-primary" type="reset" id="resetBtn" >Reset</button>
+                    </div>
+                    <div class="categoryForm justify-content-center">
+                        <button type="button" class="btn btn-primary w-25"><a href="todos/category">Add/Delete Category</a></button>
+                    </div>
+                </form>
             </div>
-            <div class="groceryForm">
-                <input type="text" placeholder="Enter Grocery Item" name='todoItem' required>
-                <input type="number" placeholder="quantity(optional)" name='quantity' min="0">
-                <button class="btn btn-primary" type="submit">Add</button>
-                <button class="btn btn-primary" type="reset" id="resetBtn" >Reset</button>
-            </div>
-        </form>
+        </div>
     </section>
     
     
 
 
     <script src="js/main.js"></script>
-            <!-- JavaScript Bundle with Popper -->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 
 </html>

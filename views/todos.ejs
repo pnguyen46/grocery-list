@@ -27,7 +27,7 @@
           </div>
         </div>
       </nav>
-    <h1><%= user.userName %>'s grocery list</h1>
+    <h1><%= user.userName[0].toUpperCase() + user.userName.slice(1) %>'s grocery list</h1>
     
     <section class="container">
         <div class="row">
@@ -58,8 +58,8 @@
     <section class="container">
         <div class="row">
             <div class="col">
-            <h2><%= user.userName %> has <%= left %> item(s) to pick up.</h2>
-                <form action="/todos/createTodo" method='POST' id="subForm" class="container mb-3">
+            <h2><%= user.userName[0].toUpperCase() + user.userName.slice(1)%> has <%= left %> item(s) to pick up.</h2>
+                <form action="/todos/createTodo" method='POST' id="groceryList" class="container mb-3">
                     <div class="groceryForm gap-2 justify-content-center">
                         <input type="text" placeholder="Enter Grocery Item" name='todoItem' required>
                         <input type="number" placeholder="quantity(optional)" name='quantity' min="0">

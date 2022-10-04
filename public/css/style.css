@@ -70,30 +70,62 @@ form, option{
     font-size: 1.3rem;
 }
 
-form{
-    border: 3px solid #0d6efd;
-    border-radius: 10px;
-    padding: 50px 30px 40px 30px;
-}
-
 .container{
     padding-top: 50px;
 }
 
 .categoryForm, .groceryForm{
     display: flex;
-    gap: 30px;
     padding-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.groceryForm select{
+    width: auto;
 }
 
 .categoryForm > button {
     width: 300px;
 }
 
+.editPage{
+    border: 2px solid black;
+    border-style: groove;
+    border-radius: 10px;
+}
+
 .editPage a {
     font-size: 1.3rem;
 }
 
+form{
+    border: 3px solid #0d6efd;
+    border-radius: 10px;
+    padding: 50px 30px 40px 30px;
+}
+
+#loginForm {
+    border: 2px solid black;
+    border-style: groove;
+    background-color: gainsboro;
+}
+
+#signUpForm{
+    border: 2px solid black;
+    border-style: groove;
+    background-color: gainsboro; 
+}
+
+#groceryList{
+    border: 2px solid black;
+    border-style: groove;
+    border-radius: 10px;
+}
+
+#editCate form{
+    border: none;
+    padding: 0;
+}
 
 .widget-content {
     padding: 1rem;
